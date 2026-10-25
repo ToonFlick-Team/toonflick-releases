@@ -1,0 +1,21 @@
+name: Feature request
+description: Something you'd like ToonFlick to do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like to do?
+      description: The task you're after, in your own words (not only the button you imagine)
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How do you do it today?
+      description: In ToonFlick, or in another program (Moho, Toon Boom Harmony, Animate, Blender…)
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Pictures, examples, links

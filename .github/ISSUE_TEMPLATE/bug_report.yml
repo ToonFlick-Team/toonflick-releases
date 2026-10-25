@@ -1,0 +1,47 @@
+name: Bug report
+description: Something doesn't work, crashes or looks wrong
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: ToonFlick version
+      description: Help ▸ About ToonFlick, or the file you downloaded
+      placeholder: "0.13.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: System
+      options:
+        - Windows x64
+        - Windows ARM64
+        - macOS Apple silicon
+        - macOS Intel
+        - Linux (AppImage)
+        - Linux (.deb)
+        - Linux (.tar.gz)
+    validations:
+      required: true
+  - type: input
+    id: gpu
+    attributes:
+      label: Graphics card
+      description: Shown in the top right of the window (GPU · …)
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened
+      description: The steps that lead to it, what you expected and what you got instead
+      placeholder: |
+        1. Open …
+        2. Click …
+        3. …
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Pictures, recordings or a project file
+      description: Drag them in here — a screenshot or a short screen recording helps a lot

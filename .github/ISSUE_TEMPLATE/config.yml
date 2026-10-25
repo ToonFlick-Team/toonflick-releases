@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Tutorials
+    url: https://toonflick.com/tutorials.html
+    about: Step-by-step guides — the answer may be there
+  - name: Roadmap
+    url: https://toonflick.com/roadmap.html
+    about: What's coming next
