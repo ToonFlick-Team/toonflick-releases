@@ -2,6 +2,73 @@
 
 ToonFlick (engine: Bogo). Versions go up in larger steps; each lists what was added.
 
+## 0.13.3 — Preview: the first download (2026-10-27)
+
+The first version to download from toonflick.com — a free preview. Tell us what you think: **Preview · Feedback** at the top right (Help ▸ Send Feedback…) opens a GitHub issue or an e-mail, version and system filled in. About fifty tutorials were walked click by click in the app; everything that didn't work on the way was fixed.
+
+### New
+- **The ToonFlick Discord**: Help ▸ Join the Discord (and a link in Send Feedback) — ask, share your work, tell us what you'd like.
+- After a few hours of animating, once, a small card asks whether you like ToonFlick: a star on GitHub, or tell us what's missing (Later asks again much later, Don't ask again never).
+- **Send feedback from the app**: Preview · Feedback at the top right (Help ▸ Send Feedback…) — something's wrong, an idea or a question — opens a prefilled issue on ToonFlick-Team/toonflick-releases or an e-mail, with the version, system and graphics card if you want.
+- **Show only inside another layer** (a clipping mask by layer): Properties ▸ Show only in, or Layer ▸ Mask ▸ Show Only Inside the Layer Below — an iris or a lid shown only inside the eye's white, with no group or mask roles; Layers marks it “in White”. Stop Clipping undoes it.
+- **ffmpeg comes with ToonFlick** (Windows, macOS, Linux AppImage and tar.gz; the .deb uses the system's): MP4, MOV and WebM export without installing anything.
+- **The skeleton in the Layers panel**, as an armature in Blender: a bone layer shows a Skeleton folder with its bones as a tree by parent — controllers (circle), poles (diamond) and IK marked. Click a bone to select it, double-click (or F2) to rename it, drag it onto another bone to hang it there (onto Skeleton: no parent), eye and lock per bone; typing a bone's name in the filter finds it. A drawing pinned to a bone says which ("→ Hand"). Picking a bone on the stage opens its Skeleton.
+- **Render ▸ Spritesheet…**: the frames in a grid on one transparent picture with a TexturePacker-style .json (frame places, durations, frame rate) for Phaser, PixiJS, Godot and Unity.
+- **Bone ▸ Templates ▸ Humanoid (Side)**: the humanoid seen from the side, facing right, with the same bones and controllers — walks read best in profile. **Walk Cycle ▸ Cartoon (Bouncy)**: longer steps with the knee lifted high, a deep dip on every contact, big arm swings, the chest leaning into the walk. Walk Cycle takes longer steps that fit the legs (the old ones shuffled).
+- **Graph ▸ Motion ▾**: a wiggle (how far, how often, detail) and movement with the soundtrack's loudness on top of the keys of a curve — before, only scripts could set them.
+- **Help ▸ Let Agents Drive ToonFlick** opens the control port in a running window, so an AI agent (bogo-mcp --attach) can drive it — before, only starting with --control did.
+- **Tutorials** on toonflick.com: about fifty, from the first bouncing ball through drawing tool by tool, layers, animation, rigging, characters, look, camera and output to working in a team and with scripts and AI agents — each one walked in the app. Help ▸ Tutorials opens them, also from Quick Start.
+- Effects ▸ Looks: **Save as a Look** keeps the current layer's (or scene's) effects as a look — before, only the scene's could be saved, from Render ▸ Look. The status bar says how many effects it holds. The empty Effects list is compact, so its Effect Guide button shows.
+- Render ▸ Ready settings: 34 presets by where the video goes (YouTube 1080p/4K/720p/Shorts, TikTok, Instagram Reel/post/portrait/story, Facebook, X, LinkedIn, Vimeo, slides, phone preview, chat and square GIFs, a Telegram sticker, the web with or without transparency, ProRes for editing and broadcast, DCI 2K/4K film, EXR, PNG sequences, a half-size review copy with burn-in), with a search field — there were five.
+
+### Fixed and smoother (found while making the tutorials)
+- A corrective on a drawing bound to a mesh works: editing it moved the points through the mesh a second time (the shape blew apart), and its moves then didn't show. The driver bone defaults to the one turned most on this frame, and the hint when nothing is turned says to turn it first.
+- A new joystick's handle sits beside the skeleton (to the right of it), not at a fixed place where a bent limb could cover it; the hint under its cells wraps instead of running off the panel.
+- A bone's Follow-through names its settings — swing (Hz), settle, gravity — with a line on what they do; before, three bare numbers.
+- Properties: a row too wide for the panel (constraints, the shape's buttons) wraps instead of widening the whole panel and cutting every row off at its right edge; the shape's To Front and To Back buttons say Front and Back (their arrows drew as empty boxes).
+- Gradient tool: the labels on the stage sit on a dark plate and name the bone ("follows Lower", "Lower · Click: the gradient follows this bone"); the status bar says which bone it follows. Messages count properly ("1 shape", "3 shapes" instead of "shape(s)").
+- Auto Lip-Sync of a voice longer than the shot makes the shot longer (the status bar says to which frame) — the mouth keys used to run on past its end, so the end of the talking never played.
+- Walk Cycle walks to the end of the shot (it stopped at the last whole cycle that fit — 49 of 72 frames — and the rest stood still). Walk Cycle and Repeat Cycle say in the status bar what they did and when the shot got longer. Filter fields have a name for screen readers.
+- Cast Shadow on a layer adds the scene light when there is none (before, nothing showed); the editor no longer draws the selected shape's highlight round its shadow.
+- Layer ▸ Particles presets go right above the selected layer like any new layer (they went on top of everything); particles are no longer outlined one by one when their drawing is selected.
+- Camera ▸ Follow Selection brings what it follows into the middle when it starts out of the picture (the camera followed a ball it never showed); Follow and Shake say what they did. The Camera, Hand, Zoom and Rotate View tools have their own hint in the status bar.
+- Render window: Whole shot renders frames 1 to the end (it started at frame 0, the setup frame); the Soundtrack switch is off when there is no soundtrack (it showed on); the format tiles and switches have names for screen readers.
+- Render ▸ Contact Sheet includes every marked frame (they were left out when between its every-Nth frames), shows the marker's name on a plate at the top of its picture (it ran into the timecode), and says where it saved.
+- Review ▸ + Note puts the keyboard in the new note's text, so you type straight away (typing went nowhere and left an empty note).
+- A shot someone else is editing shows it on the stage — a red frame and a READ-ONLY band with who is editing and what to do; before, only the status line said so, and "Opened …" replaced it at once.
+- Draw ▸ Gradient ▸ Follow a Bone… works: it takes the Gradient tool (with a gradient made first if the shape has none) and asks you to click the bone — the old Follow Selected Bone needed a shape and a bone selected at once, which selecting the bone undid.
+- An opened character selects its skeleton (it selected a drawing, whose points then covered the face); the Examples cards and categories and the folded Controls bar have names for screen readers.
+- Stop Following the Bone (and Alt+click on a bone with the Gradient tool) works — the “none” it sends was taken for “not given”.
+- Crash recovery checked by killing ToonFlick mid-work: a saved shot offers its newer autosave when opened again, untitled work is offered at the next start; the tip card no longer opens on top of that question.
+- Space+drag pans the stage without starting playback (Space plays when it is let go).
+- Weight Paint draws every bone of the skeleton (the one under the pointer lit) so you can see what to click, and picking a bone in the Skeleton folder keeps the drawing you paint current.
+- Motion paths: Ctrl+click anywhere along the path adds a key (it had to hit a frame's dot); a layer's path shows only the keys that move it, so Orient Along Path no longer covers it in diamonds.
+- Over the Graph editor its keys are its own: F fits the curves (it picked the Freehand tool), and Delete, Ctrl+A, Ctrl+C and Ctrl+V work on its keys, not on the stage.
+- The arrow keys always step frames; Shift+arrows move the selected points (Ctrl+Shift ten times as far).
+- Esc closes the window on top (the Brushes window) and leaves the selection behind it alone; in Where Is…? one Esc closes it, also from its search field.
+- Floating windows with a list (Where Is…?, Examples, Effect Guide, reports) no longer grow taller frame by frame after opening, up to the screen's edge.
+- A drag that changes nothing no longer leaves the project "unsaved" (and offered for recovery).
+- New layers are numbered like the first one (Layer 2, Bones 1, Group 1…) instead of all being called "Vector"; every tool keeps its own scroll of the options bar.
+- A new shape is selected after drawing it, but not all its points: a point tool (Line Width, Select Points) works on the point you grab.
+- A project still called Untitled takes the name of the file it is first saved as.
+- A tool's options no longer run over the zoom and view buttons in a narrow window: they scroll sideways (wheel).
+- Rectangle and Ellipse with Alt show the shape growing from the centre while dragging, not only after.
+- Transform Points shows its own hint in the status bar; the Pen's tooltip says what it does (a click is a corner, Esc finishes).
+- Counts in dialogs are whole numbers ("5", "3 times", not "5.00", "3.0 times"); a name typed into a prompt (Add Marker, Rename) replaces the suggested one instead of being added after it.
+- Palette: in the Draw workspace it gets most of the right column, the swatches come right under Fill and Line (the gradient below), and double-clicking a swatch brings its editor into view.
+- The line under a dialog's title no longer runs through the middle of tall dialogs (Quick Start).
+- Rendering: one GPU device per process for exports, queues and scripts — two renders at once could hang, and repeated renders start faster.
+
+## 0.13.2 — Tutorials, interface automation & fixes (2026-10-25)
+- **Tutorials** on toonflick.com: a bouncing ball from drawing to render (the Graph editor and motion paths on the way), then rigging an arm — first skeleton, drawings on bones, controllers, poles and limits. Every step was walked through in the app.
+- **Driving the interface** for agents and tutorials (`ui.*` over the control port and MCP): list the controls on screen by name, click, drag, type, press keys and scroll inside the window, scroll a control into view, take a picture of the window or a part of it, set the window size.
+- **A new tip card** at start: a picture for each tip, keys as key caps, menu paths in colour, ‹ › and ← → to page through them; it now waits for the splash.
+- **Gradient tool**: Alt while dragging grows the line from its middle, Shift moves the whole line, Ctrl at the press makes a radial gradient; with a gradient showing, click a bone and the gradient follows it (Alt+click lets go). Shift+U picks the Gradient tool (the Paint Bucket took it).
+- Rigging: Add Bone selects the new bone, so the next drag carries the chain on; Auto-Bind (Ctrl+B) with the bone layer selected binds every drawing inside it; Add controller and Add pole keep the bone selected, so Pole and Limits are right there; Record Joystick Pose Here reads a dial by its turn.
+- Graph editor: shows the current layer's curves; Flat and Linear on one part of a key shape just that part; Frame all fits the keyed range.
+- The arrow keys always step frames; Shift+arrows move the selected points (Ctrl+Shift ten times as far). Space+drag pans the stage without starting playback.
+- Fixed: after typing a number and Enter the arrow keys didn't step frames; the workspace tabs ran over the Window and Help menus in a narrow window; a project lock left by a crashed ToonFlick on the same computer opened the project read-only.
+
 ## 0.13.1 — Builds for Windows, macOS and Linux (2026-10-25)
 - **Downloads for every system** from GitHub Releases: Windows (x64 and ARM64, zip), macOS (Apple silicon and Intel, a ToonFlick.app in a .dmg) and Linux (x64: AppImage, .deb and tar.gz), with SHA-256 checksums and the version's notes. A version tag builds and publishes them all (`scripts/package.sh` packs one platform the same way locally).
 - **Continuous integration** on GitHub Actions for every push and pull request: formatting, Clippy without warnings, the whole test suite on Linux (rendering on Mesa's software Vulkan) and builds on Windows and macOS.
