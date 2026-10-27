@@ -9,14 +9,15 @@ notes of every version and the place to report bugs and ask for features. The so
 developed in a separate repository.
 
 [Website](https://toonflick.com) · [Tutorials](https://toonflick.com/tutorials.html) ·
-[Roadmap](https://toonflick.com/roadmap.html) · [Changelog](CHANGELOG.md) ·
+[Roadmap](https://toonflick.com/roadmap.html) · [Changelog](CHANGELOG.md) · [Discord](https://discord.gg/aV2x8JjBgh) ·
 [**Download the latest version**](https://github.com/ToonFlick-Team/toonflick-releases/releases/latest)
 
 ![ToonFlick](docs/img/app.webp)
 
-> **Early version.** ToonFlick is in active development (0.x): things change from version to
-> version and some parts are still rough. Keep copies of projects that matter, and please tell us
-> what breaks.
+> **Preview.** ToonFlick is in active development (0.x) and free to try: things change from
+> version to version and some parts are still rough. Keep copies of projects that matter, and
+> please tell us what breaks — **Preview · Feedback** at the top right of the app opens a note to
+> us, with your version and system filled in.
 
 ## Download
 
@@ -101,13 +102,17 @@ certutil -hashfile ToonFlick-0.13.1-windows-x64.zip SHA256   # Windows
 New to it? The [tutorials](https://toonflick.com/tutorials.html) go step by step: a bouncing ball,
 the graph editor and motion paths, then rigging an arm with bones, controllers, poles and limits.
 
-## Bugs and ideas
+## Bugs, ideas and talk
+
+- **Come and talk:** [the ToonFlick Discord](https://discord.gg/aV2x8JjBgh) — questions, your work, what you'd like, and
+  the news first.
 
 - **Something broke?** [Report a bug](https://github.com/ToonFlick-Team/toonflick-releases/issues/new?template=bug_report.yml)
   — the version (Help ▸ About), your system and the steps help most; a project file or a screen
   recording even more.
 - **Missing something?** [Ask for a feature](https://github.com/ToonFlick-Team/toonflick-releases/issues/new?template=feature_request.yml).
   Give a 👍 to the requests you'd like too — that's how we see what matters most.
+- **Like it?** A ⭐ on this repository helps other animators find ToonFlick.
 
 ## Versions
 
