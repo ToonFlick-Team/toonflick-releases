@@ -2,6 +2,13 @@
 
 ToonFlick (engine: Bogo). Versions go up in larger steps; each lists what was added.
 
+## 0.14.1 — Fixes (2026-10-28)
+
+### Fixed
+- **Play is heard at once**: pressing Play on the setup frame (where a project opens), or before a sound clip starts, played the animation silently until it looped — the sound only came after scrubbing the timeline first. Now it comes in exactly when the playhead reaches it, in the render preview too; the sound output is also opened as soon as a project has sound, so the first Play doesn't miss its start.
+- **The macOS app opens again**: in 0.14.0 Rhubarb's speech models sat among the app's code (Contents/MacOS), the signature check failed and macOS wouldn't open ToonFlick even with Open Anyway. They're in Contents/Resources now, and every macOS build checks its signature before it's packaged.
+- The build server cross-builds bogo.exe for Windows with its icon and version details.
+
 ## 0.14.0 — Voice and performance (2026-10-28)
 
 Characters that talk and act: dialogue generated with ElevenLabs or recorded, lip-synced offline with Rhubarb (it comes with ToonFlick), a timeline row for each speaker, mouths that bend instead of swap, joysticks recorded live, expressions on any value, light layers, Photoshop and SVG imported with their layers, and eight new tutorials.
