@@ -2,6 +2,161 @@
 
 ToonFlick (engine: Bogo). Versions go up in larger steps; each lists what was added.
 
+## 0.15.1 — Fixes (2026-11-03)
+
+The first release of 0.15 Trace and Draw (below), with what the tutorials' walk through the app found: fixes, the shortcuts cheat sheet and a raster storyboard as a Preview.
+
+### Added
+- Help ▸ Shortcuts Cheat Sheet… makes a page to print on one A4 landscape side: a labelled picture of the window with the most used shortcuts around it, by kind of work and with the tools' keys. The full list follows on screen.
+- Hold `?` in the app: every area of the window is outlined and named, with the current mode's keys over them. Rest the pointer on an area or a row for what it does; let go and it is gone.
+- Preview: a storyboard on raster panels. "Start a raster board" in the Board panel makes panels you paint with the brushes: the Brush is ready in Storyboard mode, and what you paint anywhere on a panel stays on the whole panel. See the example The dog in the rain (a raster board).
+- Preview: Raster Rectangle and Raster Ellipse paint a shape in pixels on a raster layer, the outline on the lines and the fill under them, as one undo. Shift makes a square or a circle, Alt draws from the middle. Cover lines on the bar makes the fill hide the lines already under it.
+- Preview: New Drawing (Alt+Shift+R) and Duplicate Drawing (Alt+Shift+D) in the Animation menu and on the X-Sheet. Until now a raster layer's next drawing could only be made through the command palette.
+
+### Fixed
+- The icons for flipping horizontally and vertically were swapped; the flips themselves were right.
+- The Key panel's Interpolation list shows Bounce and Elastic without scrolling.
+- With a switch selected, a new layer goes into it as its next drawing again. Since 0.15 it landed beside the switch, and a vector switch could only be filled by dragging layers in.
+- Review mode has its own key, Shift+F9. F9 is Go to View 2, which took the key first, so Review mode never opened with it.
+- Start a raster board picks the Brush. Freehand stayed in hand, and the first stroke made a vector layer over all the panels.
+- The Trace window says why nothing was traced, for instance frames of different sizes. The message used to go to the status bar behind it.
+- Undo on a raster layer takes back one stroke per Ctrl+Z. Every stroke, fill and new drawing used to take two presses after the first, the second doing nothing.
+
+### Changed
+- The Brush's Colour paints in the Fill colour and Lines in the Line colour. Colour used to take the Line colour too.
+
+## 0.15.0 — Trace and Draw (2026-11-02)
+
+Pictures become real vector layers, and raster drawing arrives frame by frame on the stage, as a Preview: it works and saves, and it will still change with what you tell us. Examples made on AI-generated pictures say so.
+
+### Added
+- Preview: the Brush (P) in Draw mode paints raster layers on the stage: Ink, Pencil, Marker, Soft, Eraser and photocraft's brushes, with size, opacity, colour, lines or colour under them, a stabiliser, a brush cursor, and under More… the brush's edge curve and what a hand does along a line. Alt+click takes a colour from the drawing.
+- Raster has its own Eraser (Shift+E), Smudge and Blur, and the Eyedropper works on both raster and vector.
+- Shift+wheel on the stage changes the size of the Brush, Eraser, Smudge, Blur, line width and Weight Paint, and says the size in pixels.
+- The Eyedropper shows as a dropper with a magnifier and the colour under it. A click takes the fill colour, Alt+click the line colour. On a raster layer a click sets both, because the brush paints with the line colour.
+- Camera on the top bar: what a drag does (Position, Zoom or Roll), the camera's X, Y, zoom and roll, Key and Reset.
+- Fill Drawing (L) fills a part of a cel drawing under its lines. A click shows what would fill and marks the spot: the further the pointer goes from it, the higher the threshold. The right button adds parts, and the next click fills. It seals gaps in lines, and takes a colour or a gradient drawn right on the stage.
+- Cel layers, also through commands (`cel.stroke`, `cel.fill`, `cel.set_picture`, `cel.new_drawing`, `cel.expose`): drawings painted with real brushes, one per frame or held, with colour under the lines. They save, reopen, render, export and pack like everything else, one stroke is one undo, a killed process leaves them whole, and the exposure sheet shows them as a column.
+- Krita files (.kra) bring their layers and folders: names, order, what's hidden, opacity, blend modes and where each sits, as Photoshop files do. A layer's masks go into its picture, and a folder's mask comes in as a layer at the top of the folder that erases what's below it. Vector, filter, fill, file and clone layers don't come, and the import says which. If a file's layers can't be read at all, its merged picture comes in, and that's said too.
+- File ▸ Import ▸ Trace Image… and Trace Parts…: a picture becomes real vector layers, with lines as centerline strokes with their width and colours as filled shapes. A folder of parts (AI pictures split up beforehand) becomes a group with a layer per file, lined up, sharing one palette group; the file's name gives the layer's name and the first file goes at the bottom.
+- A picture already in the project can be traced: Layer ▸ Trace Picture…, Trace… in Properties, or the circular menu. The result lies exactly over the picture with its position, animation and look, and the picture stays hidden under it. A switch's drawing is replaced in its place.
+- The Trace panel shows the picture in the middle of its area: the wheel zooms about the pointer, a right or middle drag moves it, and a double-click with the hand fits it again.
+- Trace only a part of a picture: select a box, an ellipse or a lasso in the Trace panel. Drag inside to move the selection, drag a corner to resize it, and click beside it to drop it. The result stays where that part was in the picture, and the paper around it is still left out.
+- The Trace panel (those menu items open it, in any workspace, over the whole window until you go back, leaving no tab behind): choose a picture, parts or frames, pick a look, and see the real result, redrawn after each change. Turn off Live updates for a big picture and press Update. Check it as result, original, over the original, lines only or fills only. Remove background can be turned off when its guess takes too much.
+- File ▸ Import ▸ Trace Sequence…: frames become a switch layer that plays them. Settings and colours are measured once and kept for every frame, shapes keep their stacking, repeated frames share one drawing and curves that haven't moved keep their points, so it doesn't flicker. A frame with a colour the palette lacks is reported, and doesn't get a new colour.
+- Five brushes for lines drawn by a shader on the graphics card: Pencil Grain, Chalk Grain, Charcoal, Dry Grain and Felt. The grain follows the line as it moves and turns, and changes as the line boils. They stay ordinary lines: width, colour, taper and bones work as before.
+- Two more of those brushes: Halftone Dots, a printer's screen with dots that merge in the middle of the line and shrink towards its rim, and Oil Bristle, opaque paint with ridges that catch the light.
+- The exposure sheet (X-Sheet panel): each switch layer is a column with its drawings down the page, a line while one holds. Click a cell to go there, drag its bottom edge to change the hold, put a selection or a whole column on 1s to 4s, swap drawings with [ and ], press Enter and type drawing names down the column. It shows and changes the same keys as the timeline.
+- Timing mode (Alt+5): the sheet at full height beside the stage.
+- Key exposures: a key that repeats the drawing before it splits a hold, and a swap stops there.
+- Storyboard mode (Alt+6) and the Board panel: panels you draw, caption and time, as a strip or a grid. Add, duplicate, split or delete a panel, drag one to another place with everything on its frames, set how long it lasts, start a shot on it. What you draw stays on its panel, the sound stays put, and the sheet shows the panels as a column. Start from the Storyboard template, from markers, or on any project.
+- Quick settings: hold the right button on a bone, a shape or a picture and click the left. Its most used settings open beside the pointer: position, angle, stretch, squash, IK ↔ FK, max stretch and squash and chain on a bone; fill, line, width, taper, position, rotation and opacity on a shape. Click outside or press Esc to close.
+- **Help ▸ Examples ▸ Drawing & tracing ▸ One fox, every line brush**: one traced drawing in plain ink and in all seven shader brushes. **The bay at sunrise**: a flat-colour picture traced whole, sharp as you push in, recoloured from its palette group. **Professor Pippen**: a coloured model sheet traced as line art, with the sheet hidden under the lines to trace again.
+- **Help ▸ Examples ▸ Production ▸ The dog in the rain**: a six-panel storyboard in Pencil Grain with shots, timing and captions. **Help ▸ Examples ▸ Motion ▸ The cat's jump**: eight traced drawings timed entirely on the exposure sheet, with a sun, a camera shake and a blurred background.
+
+- File ▸ Import ▸ Image Sequence…: pick any numbered picture and the whole run comes in as one column of the exposure sheet, named like walk_[0001-0250].png. Frames with the same pixels are one drawing, held, and saved once. A number missing from the run holds the frame before, and the report says which.
+- Drop a folder on the window: numbered pictures play in time, a folder of folders gives a column per folder (as Harmony and Clip Studio export them), and a run of layered PSDs gives a column per layer name. Cels keep their names. Three or more numbered pictures of one run dropped together are one run too.
+- Animated GIFs and WebPs come in whole, as a column timed by their delays. A project with nothing in it yet takes the file's frame rate.
+- Seventeen more blend modes: Linear Burn, Darker and Lighter Colour, Soft, Hard, Vivid, Linear and Pin Light, Hard Mix, Difference, Exclusion, Subtract, Divide, Hue, Saturation, Colour and Luminosity. Photoshop and Krita files bring theirs in as they are.
+- Blends inside, for a group: Automatic as groups have always mixed, Stay inside to stop what's in it blending with anything below, Reach below to let it, and a fade fades what it did.
+
+### Changed
+- A new empty project opens in Draw, whatever mode you were in, and Controls and Assets no longer sit in the bottom right corner (Window still opens them).
+- Tools are split into raster and vector, with icons from Tabler and new ones of our own where tools shared one.
+- Properties comes in parts on a strip of icons, with Scene, Scene Effects and Camera among them. Performance and History sit beside Layers and Modules, Palette shows only with the tools that use it, and tool settings sit beside the stage. Tool settings and the key panel resize and fold from the middle of their edge.
+- Brushes have previews, and the Board's panels show thin pencil lines clearly.
+- ToonFlick starts on a window with New Scene, Open, Examples and your recent projects, alone in a small window, with nothing open or running behind it, and no longer on the demo every time. The main window comes when you pick something; leaving New Scene or Examples comes back to it, and closing it closes the app. At its bottom you choose what starts next time: this window, the last project or an empty scene. Help ▸ Welcome… brings it back.
+- ToonFlick starts in the mode you left it in.
+- Trace is a window over nearly the whole app, with its name on top. What shows, what the mouse does and the zoom are one click each above the picture; the look is one click too, and the Trace button stands out at the bottom.
+- Vector and raster are told apart in Trace. Amber icon: the picture. Blue icons: what the trace made. Over the original, the picture is pale and the lines are blue. Zoomed in past the preview, the lines are drawn as vectors, sharp at their full width; a button adds their centres.
+
+### Fixed
+- Shapes and colour fills from Photoshop files come in from their own colour and path, with the holes their paths make, where they used to be left out or say they had no pixels.
+- A Photoshop vector mask cuts its layer, a folder's mask or vector mask cuts the folder, and a mask's density lets that much through. Each used to be left out.
+- The import report also says what isn't honoured in a Photoshop file: knockout, a mask's feather, a folder's fill opacity, an artboard's background, and blends in a CMYK file.
+- Photoshop folders mix as in Photoshop: blends stop at a Normal folder and reach through a faded Pass Through one. Neither is reported any more.
+- A clipped layer from a Photoshop file blends with what's below it. It used to come out Normal.
+- A layer clipped to a half-transparent or soft-edged one takes that layer's alpha, as in Photoshop. It used to add alpha of its own and leave the base's colour under it. Edges of clipped parts in existing projects can change by a few pixels.
+- Import Image on an animated GIF or WebP says that only its first frame came over. A file asking for a canvas too big to draw is refused, and one with more frames than fit brings the first ones and says how many.
+- Ctrl+V pastes a picture or SVG copied in another program as a new layer; before, it took Edit ▸ Paste Special.
+- A number being typed takes its value and closes when you click another one, and only one is open at a time.
+- Tab goes from input to input, past the buttons between them, and Shift+Tab goes back.
+- Opening an example shows a loader that keeps turning while the scene is built, from the menu too, and nothing can be edited behind it; before, the window stood still until it was ready.
+- A new layer, a traced picture or a pasted layer with a switch's drawing selected goes above the switch instead of among its drawings, where it changed what every later frame showed. A copy of a drawing keeps the timing too.
+- Delete Empty Layers and Clean Up keep a switch's blank drawings, whose removal changed what later frames showed.
+- After a restart every mode has its usual panels in front, the Board in Storyboard, not only the mode you quit in.
+- A status message that faded shows again when the same thing happens again, and an old message goes when the next command runs.
+- The switch dot in Layers and Convert To Group no longer change the Board's panels: those are changed on the Board.
+- Going to another mode while Trace is open closes it.
+- Playing a board changes the panel on the stage, instead of staying on the panel it started from.
+- A PSD that can't be read says why in plain words, without the command's name or raw bytes.
+- A bone's IK works when its target hangs on the bone's parent: the parent stays out of the chain, moving it takes the limb and the target along as one, and dragging it moves it instead of the controller.
+- Inserting or removing frames moves the end of a review note along with its start, and a note keeps what is left of its range when frames are cut.
+- The top bar's modes are centred on the window, close up on a small one instead of running off it, and a badge with no room beside them isn't shown.
+- A damaged or oversized file no longer brings the app down when imported: one that asks for too much is refused, and you're told what was too big. A link in an SVG or a picture named in a Moho file never makes the computer contact another one: it's left out, and you're told which layer it was for.
+- An import says what it couldn't bring over. The status line says how many things ("3 things didn't come over") and a window lists them by layer name: what didn't come over, what came over differently (Soft Light drawn as Overlay), and what can't be edited as before (text that's now pixels). Before, you saw one note at most, and for a Moho file only a count of shapes. Empty layers, folder masks, adjustment and fill layers, text, smart objects, near-match blend modes, the other pages of a PDF and what's in an SVG, OpenRaster or Krita file are all told now, and nothing opens when nothing was lost. Files dropped together share one window, and agents get the same lists in the command's answer.
+- A group around a whole SVG keeps its opacity, and its filter is reported; before, the group was dropped and both went without a word.
+- A Moho file whose project can't be unpacked says it's damaged, instead of saying there's no project in it. A picture that is there but whose size can't be read is no longer called "not found".
+- Importing a file again leaves what the earlier import's layers show as it was, and a file comes in as what it is, whatever it's called: a PNG named .psd is a picture.
+- Photoshop files come in far more often. PSB, 16 and 32 bit, CMYK and Lab now read (at 8 bits, and you're told), so do channels saved zipped, which used to refuse the whole file. A damaged layer loses only that layer, a mask that can't be read leaves its layer whole, and you're told which; if every layer is damaged you get the picture the file holds of itself. Tried on 258 files from Photoshop: all of them come in.
+- A big Photoshop file is read from the disk as each layer needs it, so a file of gigabytes doesn't have to fit in memory, and up to 4 GB of pixels come in where it was 1 GB. Only a layer's own box counts, and a see-through layer counts for nothing.
+- A Pass Through folder below full opacity lets the blend modes inside it reach the layers below, as in Photoshop. A layer's pixels past the edge of the canvas stay with it, for when it's moved.
+- An import from Photoshop also says when a smart filter's mask, Blend If or a colour profile didn't come over, and no longer calls a layer style lost when it was switched off.
+- Closing a minimized window with unsaved changes brings it back and asks; before, it closed without asking and the last edits were lost.
+- Autosave writes on its own thread: a big project's autosave no longer holds the window up.
+- Old autosaves are never deleted unasked: the recovery dialog offers to delete those older than 14 days, in two clicks.
+- A number gone bad (not a number any more) is still saved as 0 so that the file opens, and now you're told so.
+- A crash leaves a report on your computer (Help ▸ Crash Reports), and the next start says so: copy it or show the file. Nothing is sent anywhere.
+- A crash, a kill or a full disk in the middle of a save or an autosave leaves the old file whole: everything is written beside it, flushed to the disk and only then put in its place. The save before the last stays as `name.bogo.bak` (a damaged file never takes its place), and a project holding a number gone bad is saved so that it still opens (before, that made a file which wouldn't).
+- A save that fails (disk full, read-only, a folder that has gone away) says so in a dialog with the reason and Save As…, and the project stays unsaved. An autosave that fails shows a red mark in the status bar instead (click it for the reason), tries again every 30 seconds without any dialog, and the mark goes when it works. An autosave that can't be written next to the project goes to the recovery folder rather than failing.
+- After a crash the next start offers all the work left behind, saved projects too, whichever way the app is started; before, it found only never-saved projects, and a saved project's work only when opened from the File menu — and its next autosave wrote over it unasked. Close and Later keep everything, Discard takes a second click, and work left behind is never written over or removed by a later save.
+- Autosave runs when the window is left alone, and when the pointer or the focus leaves it, and also while it is minimized, so at most one interval of work is lost; before, it only ran when something else woke the window, so a window nobody touched never autosaved. A close request (what a shutdown sends) autosaves at once too.
+- Recovering keeps the autosave on the disk until the work is saved; before, it was deleted at once, so a second crash lost it all.
+- Two windows of the app leave each other's autosaves alone: a second window doesn't list a running one's work as left over, can't recover or discard it, and doesn't autosave over it when both have the same project open.
+- A damaged or cut-off project or autosave gets a message saying what is wrong and offers the earlier copies that open (the backup, the autosave before it, the saved project, the latest version); the damaged file is left as it is, and a copy opened in place of a damaged project has no file until you choose one, so it can't be saved over it. This also when the file is given at the start.
+- Autosaves of projects never saved no longer live in the temp folder, where disk cleaners delete them (those already there are still offered). Folder: Help ▸ Open Folder ▸ Autosaves. Settings aren't lost if the disk fills up as they are written.
+- A panic (a bug in the app) writes the work the last autosave doesn't have yet on the way down, beside the autosave; the next start offers it as saved as the app crashed.
+- Bones under a squashed or stretched bone (by its IK controller's max squash / max stretch, or its own squash) squash and stretch with it — their ends follow, not just their starts: a bone along it gets longer or shorter as it does, one across it as it widens. Controllers and independent bones keep their size.
+- A comma typed (or pasted) into a number field becomes a dot right away, so "12,5" is 12.5 — in every number field (Properties, the timeline, dialogs, tool options), never in names or other text.
+- A number you can type (the blue values in Properties, the frame fields on the timeline) opens for typing with one click and with the whole value selected, so what you type replaces it; before, it took a double-click and the caret landed at the end.
+- Select Points and Transform Points (the arrow, the tool you're in after a drop) give a picture the same box as a drawing: drag inside to move it, corners and edges scale, the ring turns, the cross moves the pivot; a click selects it. Before, they did nothing with a picture (it has no points).
+- A file dropped on the window lands at the top level, right above the selected character or group — never inside it (file.import top).
+- A picture (an imported or dropped image) is picked by clicking it on the stage and its transform box is the picture's size; before, clicks went through it and its box was a single point, so it couldn't be moved, scaled or turned on the stage.
+- Esc on a bone's card (Weight Paint's, a new bone's) closes only the card; the bone stays selected (a second Esc deselects).
+- A point bound to a bone follows it also in a layer bound whole to another bone (before, the layer's bone won and the point didn't bend).
+- Ctrl+A in Bind (J) on a drawing selects its points (to bind them to a bone), not the skeleton's bones.
+
+### New
+- **Expression sliders, as shape keys in Blender**: the Controls panel lists a character's expressions as bars (a slider joystick each): drag how much of it shows, 0–100 % (−100–100 % when both sides have a pose), keyed on the frame; a double-click sets it back. A pose can now also move bones (a brow lifting), not only turn them.
+- **Milo, a studio rig** (Help ▸ Examples ▸ Advanced rigs): eight drawn views of the body and of the head on two dials, the nose and the far ear behind the head when he turns away (stacking by view), IK arms and legs with poles, eyes with lids and a look controller, a mouth of morphs and ten expression sliders; every line a real line with its own width.
+- **File ▸ Recover Unsaved Work…** lists the work left behind by sessions that ended without saving, whenever you want to get back to it.
+- **An IK limb moves by its root**: in Pose Bones, drag the top bone of an IK limb at its start (the hip, the shoulder) and the whole limb moves with its controller, keeping its shape (before, the drag went to the controller alone, so the limb's root couldn't be moved). Alt or Ctrl still rotates only that bone.
+- **Several selected bones move together**: grab one of them at its start (or a controller among them) and they all move as far; grabbed elsewhere they still all turn as much. A moved IK limb takes its controller along.
+- **Points bound to several bones**: in Bind (J) click a bone to bind the selected points to it, Shift+click another to add it — the weight is shared evenly (bone.bind_points add). The hovered bone's ring around a point shows how much it holds it.
+- **Weight Paint on the drawing's own points**: a drawing without a mesh is painted point by point, as Bind binds them — each point coloured by how much the picked bone holds it, the rest shared by its other bones. A drawing with a mesh still paints the mesh.
+- **Several panels on screen at once**: groups stacked in the side column fold to their tabs (their ▾, or click the open tab again) and unfold the same way; Window ▸ Tabs ▸ Split Off Panel gives the panel you work in a group of its own under its group. Each mode starts with its own: Animate shows Controls and Assets under Properties, Draw the Layers between the palette and Properties, Rig the Controls folded under Properties (Window ▸ Workspaces ▸ Reset brings a mode's panels back to these).
+- **Pose several bones at once**: Shift+click adds a bone, Ctrl+click toggles, a box over empty space selects; dragging one of the selected turns them all as much (a selected root: they all move).
+- **Modes: Draw, Rig, Weight, Animate** (top bar, Alt+1…4, View ▸ Mode): each brings its own tools and its own panels (arranged as you leave them). Rig always works on the setup frame — the rest pose, never keyed — and leaving it goes back to the frame you were animating; scrubbing away from the setup frame goes into Animate. Tab toggles between Animate and the current layer's own mode, Ctrl+Tab opens a menu of the modes (1–4), a tool's key from another mode goes into its mode. The mode shows in the stage's corner. Next tab of a panel group moved to Ctrl+PageDown / Ctrl+PageUp.
+- **Weight Paint shows the points**: every mesh point coloured by its weight (like Moho) and bigger the more the bone holds it; **Every bone's weights** shows them all at once, each point in the colours of the bones holding it, mixed (also when no bone is picked yet). Picking a bone opens a card beside it: brush mode, weight, strength, size, Normalize, Mirror.
+- **Transform Bones** (Shift+B): change a rig on the setup frame by hand — drag a bone to move it (what hangs on it follows), drag its tip to turn and stretch it (Ctrl: turn only, Shift: 45° steps), drag empty space to select bones. Also as bone.transform (move, turn, scale, flip around a pivot) and Bone ▸ Bones ▸ Turn 90° / Flip; the animation keeps its motion on top of the new setup.
+- **Copy, paste and duplicate bones**: Ctrl+C / Ctrl+V / Ctrl+D with bones selected (Bone ▸ Bones ▸ Duplicate Bones) — pasted on the selected bone or where they hung, a little further over, with free names; into another character too.
+- **Adding bones**: the chain goes on exactly from the selected bone's tip wherever you drag (pressing on any bone's tip or start begins there and hangs the new bone on that bone); Alt starts at the selected bone's start (beside it), Ctrl where you press; Shift draws straight (45° steps: level, upright, diagonal). While dragging the length and angle show, and a faint line to the bone it will hang on.
+- **Bone shapes**: Diamond, Stick, Box or Line per bone (Bone ▸ Bones ▸ Shape, the circular menu, the bar above the stage) — only how they are drawn; the diamond's tip is rounded so where a bone ends stays visible.
+- **The circular menu on bones**: right-click a bone — Edit (copy, paste, duplicate, mirror, subdivide, delete), Transform (turn, flip), Shape, and Parent & IK: **Pick parent…** and **Pick IK target… / Pick pole…** turn the pointer into an eyedropper — click the bone to hang on or to reach for (a dashed line shows where it goes, Esc cancels) — Clear parent, Add IK controller, Add pole, Clear IK, select children / parent, properties.
+- **More in the bar above the stage**: Add Bone and Transform Bones get duplicate, paste, mirror, turn, flip, subdivide, unparent, select children, delete, the bones' shape and names; Pose Bones gets copy / paste / mirrored / flip pose; the point tools get Subdivide and Reset Handles.
+- The selected or hovered bone shows what it hangs on: its parent outlined faintly and a brighter dashed line to it.
+- **Squash** on bones (Properties ▸ Squash, keyable, in %; bone.set squash): 30 % makes the bone 30 % shorter and what is bound to it 30 % wider across it — a squash that keeps the volume; below 0 longer and thinner. On top of Stretch, and what hangs on the bone follows; it squashes the artwork on the setup frame too (the rest pose never has it). Controllers don't show it (they never bend artwork).
+- **Squash with an IK controller** (Properties ▸ Max squash, beside Max stretch; bone.rig ik_squash): bring the controller closer than the chain reaches and the chain squashes — shorter and as much wider — before it bends, by at most this much; Max stretch does the same the other way. Keyable.
+- **A new bone's quick card**: right beside a bone you have just added — its name, shape, colour, Controller and Add IK controller, so the next thing to set is one click away (× or Esc closes it).
+- **Make controller** in the bones' circular menu (Parent & IK): any bone becomes an IK / control handle (and back).
+- Pose Bones moves a bone that hangs on its parent away from the parent's tip (an eye, a prop) instead of only turning it.
+- Transform Bones has its own icon (a bone in a transform box).
+- **Loaders**: pictures still being made (examples, the Effect Guide, text animations, assets, Open Recent) show a turning loader, and opening an example shows "Opening …" while it is built.
+- File ▸ Open Recent: the whole row (picture, name, folder) opens the project, not only the name.
+- Dragged selection boxes look the same everywhere — the stage's tools, bones, the timeline and the Graph: the dashed outline.
+- **Ellipse points**: the Ellipse tool's bar sets how many points a new ellipse gets (3–64; shape.ellipse points).
+- **Subdivide** in the circular menu of points and shapes: a new point in the middle of each segment.
+
 ## 0.14.1 — Fixes (2026-10-28)
 
 ### Fixed
